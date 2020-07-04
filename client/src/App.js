@@ -4,6 +4,10 @@ import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import Header from "./components/header/Header";
 import Home from "./pages/homepage/Homepage";
 import Auth from "./pages/authPage/Auth";
+import Alert from "./components/alert/Alert";
+//Redux
+import { Provider } from "react-redux";
+import store from "./store";
 
 // const SignIn = props => {
 //   console.log(props);
@@ -28,17 +32,20 @@ import Auth from "./pages/authPage/Auth";
 // };
 
 const App = () => (
-  <Router>
-    <Fragment>
-      <Header></Header>
-      <section className="container">
-        <Switch>
-          <Route exact path="/" component={Home}></Route>
-          <Route exact path="/signin" component={Auth}></Route>
-        </Switch>
-      </section>
-    </Fragment>
-  </Router>
+  <Provider store={store}>
+    <Router>
+      <Fragment>
+        <Header></Header>
+        <section className="container">
+          <Alert></Alert>
+          <Switch>
+            <Route exact path="/" component={Home}></Route>
+            <Route exact path="/signin" component={Auth}></Route>
+          </Switch>
+        </section>
+      </Fragment>
+    </Router>
+  </Provider>
 );
 
 export default App;

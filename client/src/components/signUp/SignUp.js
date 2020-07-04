@@ -1,31 +1,35 @@
 import React, { Fragment, useState } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import "../signIn/signIn.styles.css";
+import { setAlert } from "../../actions/alert";
+import { signup } from "../../actions/register";
+import PropTypes from "prop-types";
 
-const SignUp = props => {
+const SignUp = ({ setAlert, signup }) => {
   // useState is equivalent to
   //   state = {
   //       formData: { } }
   // and this.state = ... for setFormData
 
   const [formData, setFormData] = useState({
-    name: "",
+    username: "",
     email: "",
     password: "",
     password2: ""
   });
 
-  const { name, email, password, password2 } = formData;
+  const { username, email, password, password2 } = formData;
 
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const onSubmit = e => {
+  const onSubmit = async e => {
     e.preventDefault();
     if (password !== password2) {
-      console.log("Passwords don't match.");
+      setAlert("Passwords don't match.", "danger");
     } else {
-      console.log(formData);
+      signup({ username, email, password });
     }
   };
 
@@ -37,11 +41,10 @@ const SignUp = props => {
           <input
             type="text"
             className="my-1"
-            placeholder="Name"
-            name="name"
-            value={name}
+            placeholder="Username"
+            name="username"
+            value={username}
             onChange={e => onChange(e)}
-            required
           />
           <input
             type="email"
@@ -50,7 +53,6 @@ const SignUp = props => {
             name="email"
             value={email}
             onChange={e => onChange(e)}
-            required
           />
         </div>
         <div className="form-group">
@@ -79,4 +81,9 @@ const SignUp = props => {
   );
 };
 
-export default SignUp;
+SignUp.propTypes = {
+  setAlert: PropTypes.func.isRequired,
+  signup: PropTypes.func.isRequired
+};
+
+export default connect(null, { setAlert, signup })(SignUp);
