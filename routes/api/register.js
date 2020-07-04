@@ -8,13 +8,13 @@ const { check, validationResult } = require("express-validator");
 const User = require("../../models/User");
 
 // Public
-// api/users
+// api/register
 // Register
 
 router.post(
   "/",
   [
-    check("name", "Name is required")
+    check("username", "Username is required")
       .not()
       .isEmpty(),
     check("email", "Email is required")
@@ -31,7 +31,7 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { name, email, password } = req.body;
+    const { username, email, password } = req.body;
 
     try {
       // check if user already exists
@@ -46,7 +46,7 @@ router.post(
       // if not, create one
 
       user = new User({
-        name,
+        username,
         email,
         password
       });
