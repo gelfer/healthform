@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import Header from "./components/header/Header";
@@ -8,6 +8,8 @@ import Alert from "./components/alert/Alert";
 //Redux
 import { Provider } from "react-redux";
 import store from "./store";
+import { loadUser } from "./actions/auth";
+import setAuthToken from "./utils/setAuthToken";
 
 // const SignIn = props => {
 //   console.log(props);
@@ -31,21 +33,31 @@ import store from "./store";
 //   );
 // };
 
-const App = () => (
-  <Provider store={store}>
-    <Router>
-      <Fragment>
-        <Header></Header>
-        <section className="container">
-          <Alert></Alert>
-          <Switch>
-            <Route exact path="/" component={Home}></Route>
-            <Route exact path="/signin" component={Auth}></Route>
-          </Switch>
-        </section>
-      </Fragment>
-    </Router>
-  </Provider>
-);
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
+
+const App = () => {
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
+
+  return (
+    <Provider store={store}>
+      <Router>
+        <Fragment>
+          <Header></Header>
+          <section className="container">
+            <Alert></Alert>
+            <Switch>
+              <Route exact path="/" component={Home}></Route>
+              <Route exact path="/signin" component={Auth}></Route>
+            </Switch>
+          </section>
+        </Fragment>
+      </Router>
+    </Provider>
+  );
+};
 
 export default App;

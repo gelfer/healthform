@@ -1,8 +1,20 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { signout } from "../../actions/auth";
 import "./header.styles.css";
 
-const Header = () => {
+const Header = ({ auth: { isAuthenticated, loading }, signout }) => {
+  const authLinks = (
+    <ul>
+      <li>
+        <a onClick={signout} href="#!">
+          Sign out
+        </a>
+      </li>
+    </ul>
+  );
   const guestLinks = (
     <ul>
       <li>
@@ -15,10 +27,20 @@ const Header = () => {
       <h1>
         <Link to="/">Form</Link>
       </h1>
-
-      <Fragment>{guestLinks}</Fragment>
+      {!loading && (
+        <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
+      )}
     </nav>
   );
 };
 
-export default Header;
+Header.propTypes = {
+  signout: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps, { signout })(Header);

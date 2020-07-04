@@ -1,12 +1,12 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import "../signIn/signIn.styles.css";
 import { setAlert } from "../../actions/alert";
 import { signup } from "../../actions/register";
 import PropTypes from "prop-types";
 
-const SignUp = ({ setAlert, signup }) => {
+const SignUp = ({ isAuthenticated, setAlert, signup }) => {
   // useState is equivalent to
   //   state = {
   //       formData: { } }
@@ -33,6 +33,11 @@ const SignUp = ({ setAlert, signup }) => {
     }
   };
 
+  // Redirect if logged in
+  if (isAuthenticated) {
+    return <Redirect to="/"></Redirect>;
+  }
+
   return (
     <div className="signUpContainer">
       <h1 className="large text-success">Sign Up</h1>
@@ -45,6 +50,7 @@ const SignUp = ({ setAlert, signup }) => {
             name="username"
             value={username}
             onChange={e => onChange(e)}
+            required
           />
           <input
             type="email"
@@ -53,6 +59,7 @@ const SignUp = ({ setAlert, signup }) => {
             name="email"
             value={email}
             onChange={e => onChange(e)}
+            required
           />
         </div>
         <div className="form-group">
@@ -83,7 +90,12 @@ const SignUp = ({ setAlert, signup }) => {
 
 SignUp.propTypes = {
   setAlert: PropTypes.func.isRequired,
-  signup: PropTypes.func.isRequired
+  signup: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool
 };
 
-export default connect(null, { setAlert, signup })(SignUp);
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { setAlert, signup })(SignUp);

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { setAlert } from "./alert";
 import { SIGNUP_SUCCESS, SIGNUP_FAIL } from "./types";
+import { loadUser } from "./auth";
 
 // Register User
 export const signup = ({ username, email, password }) => async dispatch => {
@@ -19,6 +20,8 @@ export const signup = ({ username, email, password }) => async dispatch => {
       type: SIGNUP_SUCCESS,
       payload: res.data
     });
+
+    dispatch(loadUser());
   } catch (error) {
     const errors = error.response.data.errors;
 
