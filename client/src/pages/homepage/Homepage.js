@@ -1,9 +1,10 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import FormItem from "../../components/formItem/FormItem";
 import { getForms } from "../../actions/forms";
+import { SearchBox } from "../../components/searchBox/SearchBox";
 
 const Home = ({
   getForms,
@@ -13,6 +14,19 @@ const Home = ({
   useEffect(() => {
     getForms();
   }, [getForms]);
+
+  const [formData, setFormData] = useState({
+    searchField: ""
+  });
+
+  const filteredLastName = forms.filter(form =>
+    form.lastName.toLowerCase().includes(formData.searchField.toLowerCase())
+  );
+
+  const handleChange = e => {
+    setFormData({ searchField: e.target.value });
+  };
+
   return (
     <div>
       {!loading && (
@@ -25,9 +39,14 @@ const Home = ({
                 </Link>
               </div>
 
-              <div className="profiles">
-                {forms.length > 0 ? (
-                  forms.map(form => (
+              <SearchBox
+                placeholder="search by last name"
+                handleChange={handleChange}
+              ></SearchBox>
+
+              <div className="container">
+                {filteredLastName.length > 0 ? (
+                  filteredLastName.map(form => (
                     <FormItem key={form._id} form={form}></FormItem>
                   ))
                 ) : (

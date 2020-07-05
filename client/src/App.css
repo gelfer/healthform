@@ -153,7 +153,6 @@ ul {
 
 .btn-primary,
 .bg-primary,
-.badge-primary,
 .alert-primary {
   background: var(--primary-color);
   color: #fff;
@@ -161,7 +160,6 @@ ul {
 
 .btn-light,
 .bg-light,
-.badge-light,
 .alert-light {
   background: var(--light-color);
   color: #333;
@@ -169,7 +167,6 @@ ul {
 
 .btn-dark,
 .bg-dark,
-.badge-dark,
 .alert-dark {
   background: var(--dark-color);
   color: #fff;
@@ -177,7 +174,6 @@ ul {
 
 .btn-danger,
 .bg-danger,
-.badge-danger,
 .alert-danger {
   background: var(--danger-color);
   color: #fff;
@@ -185,7 +181,6 @@ ul {
 
 .btn-success,
 .bg-success,
-.badge-success,
 .alert-success {
   background: var(--success-color);
   color: #fff;
@@ -193,7 +188,6 @@ ul {
 
 .btn-white,
 .bg-white,
-.badge-white,
 .alert-white {
   background: #fff;
   color: #333;
@@ -204,7 +198,6 @@ ul {
   opacity: 0.8;
 }
 
-.bg-light,
-.badge-light {
+.bg-light {
   border: #ccc solid 1px;
 }
