@@ -4,10 +4,20 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 
-const Edit = () => {
-  return <Fragment>EditForm component here</Fragment>;
+const Edit = ({ auth }) => {
+  return (
+    <Fragment>
+      <div>Edit</div>
+    </Fragment>
+  );
 };
 
-Edit.propTypes = {};
+Edit.propTypes = {
+  auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
 
 export default Edit;

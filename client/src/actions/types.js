@@ -7,3 +7,7 @@ export const AUTH_ERROR = "AUTH_ERROR";
 export const SIGNIN_SUCCESS = "SIGNIN_SUCCESS";
 export const SIGNIN_FAIL = "SIGNIN_FAIL";
 export const SIGNOUT = "SIGNOUT";
+export const GET_FORM = "GET_FORM";
+export const GET_FORMS = "GET_FORMS";
+export const FORM_ERROR = "FORM_ERROR";
+export const CLEAR_FORM = "CLEAR_FORM";

@@ -35,7 +35,7 @@ const AddForm = ({ setAlert }) => {
   return (
     <div className="signUpContainer">
       <form className="form" onSubmit={e => onSubmit(e)}>
-        <h1>Add Information</h1>
+        <h1>Create a new form</h1>
         <div className="form-group">
           <input
             type="text"

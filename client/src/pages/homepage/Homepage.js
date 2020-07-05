@@ -1,10 +1,18 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import FormItem from "../../components/formItem/FormItem";
+import { getForms } from "../../actions/forms";
 
-const Home = ({ auth: { isAuthenticated, loading } }) => {
+const Home = ({
+  getForms,
+  auth: { isAuthenticated, loading },
+  form: { forms }
+}) => {
+  useEffect(() => {
+    getForms();
+  }, [getForms]);
   return (
     <div>
       {!loading && (
@@ -12,12 +20,20 @@ const Home = ({ auth: { isAuthenticated, loading } }) => {
           {isAuthenticated ? (
             <Fragment>
               <div className="dash-buttons">
-                <Link to="/form" className="btn btn-light">
+                <Link to="/create" className="btn btn-light">
                   Add a new form{" "}
                 </Link>
               </div>
 
-              <FormItem></FormItem>
+              <div className="profiles">
+                {forms.length > 0 ? (
+                  forms.map(form => (
+                    <FormItem key={form._id} form={form}></FormItem>
+                  ))
+                ) : (
+                  <h4>Empty...</h4>
+                )}
+              </div>
             </Fragment>
           ) : (
             <h1>Please sign in</h1>
@@ -29,11 +45,14 @@ const Home = ({ auth: { isAuthenticated, loading } }) => {
 };
 
 Home.propTypes = {
+  getForms: PropTypes.func.isRequired,
+  form: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  form: state.form
 });
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps, { getForms })(Home);
