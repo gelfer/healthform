@@ -4,7 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import Home from "../homepage/Homepage";
 import Auth from "../authPage/Auth";
 import Create from "../createPage/CreatePage";
-import Edit from "../editPage/Edit";
+import Edit from "../editPage/EditPage";
 import View from "../viewPage/ViewPage";
 import Alert from "../../components/alert/Alert";
 import PrivateRoute from "./PrivateRoute";

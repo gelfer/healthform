@@ -1,10 +1,11 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { createForm } from "../../actions/forms";
+import "./editItem.styles.css";
+import { editForm } from "../../actions/forms";
 
-const CreatePage = ({ createForm, history }) => {
+const EditItem = ({ form: { form, loading }, editForm, match, history }) => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -19,6 +20,25 @@ const CreatePage = ({ createForm, history }) => {
     province: "",
     zipCode: ""
   });
+
+  useEffect(() => {
+    editForm(match.params.id);
+
+    setFormData({
+      firstName: loading || !form.firstName ? "" : form.firstName,
+      lastName: loading || !form.lastName ? "" : form.lastName,
+      age: loading || !form.age ? "" : form.age,
+      email: loading || !form.email ? "" : form.email,
+      phone: loading || !form.phone ? "" : form.phone,
+      allergy: loading || !form.allergy ? "" : form.allergy.join(","),
+      medication: loading || !form.medication ? "" : form.medication.join(","),
+      number: loading || !form.address ? "" : form.address.number,
+      street: loading || !form.address ? "" : form.address.street,
+      district: loading || !form.address ? "" : form.address.district,
+      province: loading || !form.address ? "" : form.address.province,
+      zipCode: loading || !form.address ? "" : form.address.zipCode
+    });
+  }, [loading, editForm]);
 
   const {
     firstName,
@@ -37,16 +57,15 @@ const CreatePage = ({ createForm, history }) => {
 
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const onSubmit = e => {
+    e.preventDefault();
+    editForm(form._id, formData, history);
+  };
   return (
     <Fragment>
       <h1 className="large">Create a New Form</h1>
-      <form
-        className="form"
-        onSubmit={e => {
-          e.preventDefault();
-          createForm(formData, history);
-        }}
-      >
+      <form className="form" onSubmit={e => onSubmit(e)}>
         <div className="form-group">
           <input
             type="text"
@@ -186,8 +205,13 @@ const CreatePage = ({ createForm, history }) => {
   );
 };
 
-CreatePage.propTypes = {
-  createForm: PropTypes.func.isRequired
+EditItem.propTypes = {
+  editForm: PropTypes.func.isRequired,
+  form: PropTypes.object.isRequired
 };
 
-export default connect(null, { createForm })(withRouter(CreatePage));
+const mapStateToProps = state => ({
+  form: state.form
+});
+
+export default connect(mapStateToProps, { editForm })(withRouter(EditItem));

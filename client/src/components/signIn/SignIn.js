@@ -27,7 +27,7 @@ const SignIn = ({ isAuthenticated, signin }) => {
   }
   return (
     <div className="signUpContainer mb">
-      <h1 className="large text-primary">Sign In</h1>
+      <h1 className="large text-success">Sign In</h1>
       <form className="form" onSubmit={e => onSubmit(e)}>
         <div className="form-group">
           <input
@@ -50,7 +50,7 @@ const SignIn = ({ isAuthenticated, signin }) => {
             required
           />
         </div>
-        <input type="submit" value="Sign in" className="btn btn-primary" />
+        <input type="submit" value="Sign in" className="btn btn-success" />
       </form>
     </div>
   );

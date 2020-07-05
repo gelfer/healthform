@@ -17,9 +17,6 @@ const FormItem = ({ form: { _id, firstName, lastName, phone } }) => {
       <Link to={`/view/${_id}`} className="btn" id="mt">
         View
       </Link>
-      <Link to={`/edit/${_id}`} className="btn">
-        Edit
-      </Link>
     </div>
   );
 };

@@ -13,3 +13,5 @@ export const FORM_ERROR = "FORM_ERROR";
 export const CLEAR_FORM = "CLEAR_FORM";
 export const CLEAR_FORMS = "CLEAR_FORMS";
 export const CREATE_FORM = "CREATE_FORM";
+export const EDIT_FORM = "EDIT_FORM";
+export const DELETE_FORM = "DELETE_FORM";

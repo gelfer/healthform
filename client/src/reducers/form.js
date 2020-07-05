@@ -4,7 +4,9 @@ import {
   FORM_ERROR,
   CLEAR_FORM,
   CLEAR_FORMS,
-  CREATE_FORM
+  CREATE_FORM,
+  EDIT_FORM,
+  DELETE_FORM
 } from "../actions/types";
 
 const initialState = {
@@ -19,6 +21,12 @@ export default function(state = initialState, action) {
 
   switch (type) {
     case GET_FORM:
+      return {
+        ...state,
+        form: payload,
+        loading: false
+      };
+    case EDIT_FORM:
       return {
         ...state,
         form: payload,
@@ -46,6 +54,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         forms: [],
+        loading: false
+      };
+    case DELETE_FORM:
+      return {
+        ...state,
+        forms: state.forms.filter(form => form._id !== payload),
         loading: false
       };
     case FORM_ERROR:

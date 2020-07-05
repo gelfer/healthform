@@ -40,7 +40,7 @@ const SignUp = ({ isAuthenticated, setAlert, signup }) => {
 
   return (
     <div className="signUpContainer">
-      <h1 className="large text-success">Sign Up</h1>
+      <h1 className="large text-primary">Sign Up</h1>
       <form className="form" onSubmit={e => onSubmit(e)}>
         <div className="form-group">
           <input
@@ -82,7 +82,7 @@ const SignUp = ({ isAuthenticated, setAlert, signup }) => {
             minLength="6"
           />
         </div>
-        <input type="submit" value="Sign up" className="btn btn-success" />
+        <input type="submit" value="Sign up" className="btn btn-primary" />
       </form>
     </div>
   );
