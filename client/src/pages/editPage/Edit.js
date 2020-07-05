@@ -4,12 +4,10 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 
-const Form = () => {
-  return (
-    <Fragment>
-      <AddForm></AddForm>
-    </Fragment>
-  );
+const Edit = () => {
+  return <Fragment>EditForm component here</Fragment>;
 };
 
-export default Form;
+Edit.propTypes = {};
+
+export default Edit;

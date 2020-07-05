@@ -1,13 +1,27 @@
 import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import FormItem from "../../components/formItem/FormItem";
 
 const Home = ({ auth: { isAuthenticated, loading } }) => {
   return (
     <div>
       {!loading && (
         <Fragment>
-          {isAuthenticated ? <h1>Welcome!</h1> : <h1>Please sign in</h1>}
+          {isAuthenticated ? (
+            <Fragment>
+              <div className="dash-buttons">
+                <Link to="/form" className="btn btn-light">
+                  Add a new form{" "}
+                </Link>
+              </div>
+
+              <FormItem></FormItem>
+            </Fragment>
+          ) : (
+            <h1>Please sign in</h1>
+          )}
         </Fragment>
       )}
     </div>

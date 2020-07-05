@@ -2,9 +2,8 @@ import React, { Fragment, useEffect } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import Header from "./components/header/Header";
-import Home from "./pages/homepage/Homepage";
-import Auth from "./pages/authPage/Auth";
-import Alert from "./components/alert/Alert";
+import Routes from "./pages/routing/Routes";
+
 //Redux
 import { Provider } from "react-redux";
 import store from "./store";
@@ -47,13 +46,9 @@ const App = () => {
       <Router>
         <Fragment>
           <Header></Header>
-          <section className="container">
-            <Alert></Alert>
-            <Switch>
-              <Route exact path="/" component={Home}></Route>
-              <Route exact path="/signin" component={Auth}></Route>
-            </Switch>
-          </section>
+          <Switch>
+            <Route component={Routes}></Route>
+          </Switch>
         </Fragment>
       </Router>
     </Provider>
