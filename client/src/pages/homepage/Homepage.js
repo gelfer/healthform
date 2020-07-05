@@ -28,30 +28,36 @@ const Home = ({
   };
 
   return (
-    <div>
+    <Fragment>
       {!loading && (
         <Fragment>
           {isAuthenticated ? (
             <Fragment>
-              <div className="dash-buttons">
-                <Link to="/create" className="btn btn-light">
-                  Add a new form{" "}
-                </Link>
-              </div>
+              <div>
+                <div className="dash-buttons">
+                  <Link to="/create" className="btn btn-light">
+                    Add a new form{" "}
+                  </Link>
+                </div>
+                <SearchBox
+                  placeholder="search by last name"
+                  className="container"
+                  handleChange={handleChange}
+                ></SearchBox>
 
-              <SearchBox
-                placeholder="search by last name"
-                handleChange={handleChange}
-              ></SearchBox>
+                <h2 className="my-1">
+                  Total number of forms: {filteredLastName.length}
+                </h2>
 
-              <div className="container">
-                {filteredLastName.length > 0 ? (
-                  filteredLastName.map(form => (
-                    <FormItem key={form._id} form={form}></FormItem>
-                  ))
-                ) : (
-                  <h4>Empty...</h4>
-                )}
+                <div>
+                  {filteredLastName.length > 0 ? (
+                    filteredLastName.map(form => (
+                      <FormItem key={form._id} form={form}></FormItem>
+                    ))
+                  ) : (
+                    <h4>Empty...</h4>
+                  )}
+                </div>
               </div>
             </Fragment>
           ) : (
@@ -59,7 +65,7 @@ const Home = ({
           )}
         </Fragment>
       )}
-    </div>
+    </Fragment>
   );
 };
 

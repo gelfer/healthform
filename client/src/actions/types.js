@@ -11,3 +11,5 @@ export const GET_FORM = "GET_FORM";
 export const GET_FORMS = "GET_FORMS";
 export const FORM_ERROR = "FORM_ERROR";
 export const CLEAR_FORM = "CLEAR_FORM";
+export const CLEAR_FORMS = "CLEAR_FORMS";
+export const CREATE_FORM = "CREATE_FORM";

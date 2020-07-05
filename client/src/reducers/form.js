@@ -1,4 +1,11 @@
-import { GET_FORM, GET_FORMS, FORM_ERROR, CLEAR_FORM } from "../actions/types";
+import {
+  GET_FORM,
+  GET_FORMS,
+  FORM_ERROR,
+  CLEAR_FORM,
+  CLEAR_FORMS,
+  CREATE_FORM
+} from "../actions/types";
 
 const initialState = {
   form: null,
@@ -23,10 +30,21 @@ export default function(state = initialState, action) {
         forms: payload,
         loading: false
       };
+    case CREATE_FORM:
+      return {
+        ...state,
+        forms: [payload, ...state.forms],
+        loading: false
+      };
     case CLEAR_FORM:
       return {
         ...state,
         form: null,
+        loading: false
+      };
+    case CLEAR_FORMS:
+      return {
+        ...state,
         forms: [],
         loading: false
       };

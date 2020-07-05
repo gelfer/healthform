@@ -3,12 +3,16 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getForm } from "../../actions/forms";
+import Spinner from "../../components/spinner/Spinner";
+import "./viewPage.styles.css";
 
 const ViewPage = ({ getForm, form: { form, loading }, match }) => {
   useEffect(() => {
     getForm(match.params.id);
   }, [getForm, match.params.id]);
-  return (
+  return loading && form === null ? (
+    <Spinner></Spinner>
+  ) : (
     <Fragment>
       {form === null || loading ? (
         <h1>Nothing to show</h1>
@@ -22,8 +26,11 @@ const ViewPage = ({ getForm, form: { form, loading }, match }) => {
             Edit
           </Link>
 
-          <h1>{form.firstName}</h1>
-          <h1>{form.dateOfBirth}</h1>
+          <div className="template pt">
+            <h1>Information</h1>
+            <h3>{form.firstName}</h3>
+            <h3>{form.dateOfBirth}</h3>
+          </div>
         </Fragment>
       )}
     </Fragment>

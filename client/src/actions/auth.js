@@ -6,7 +6,8 @@ import {
   SIGNIN_SUCCESS,
   SIGNIN_FAIL,
   SIGNOUT,
-  CLEAR_FORM
+  CLEAR_FORM,
+  CLEAR_FORMS
 } from "./types";
 import setAuthToken from "../utils/setAuthToken";
 
@@ -65,5 +66,6 @@ export const signin = ({ email, password }) => async dispatch => {
 // Sign out
 export const signout = () => dispatch => {
   dispatch({ type: CLEAR_FORM });
+  dispatch({ type: CLEAR_FORMS });
   dispatch({ type: SIGNOUT });
 };

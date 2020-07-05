@@ -1,0 +1,14 @@
+.template {
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 2px #ccc;
+  padding: 30px;
+  /* margin-bottom: 10px; */
+}
+
+#mt {
+  margin-top: 15px;
+}
+
+.title {
+  color: black;
+}
