@@ -13,29 +13,27 @@ const FormSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  dateOfBirth: {
-    type: Date,
+  age: {
+    type: String,
     required: true
   },
-  address: [
-    {
-      number: {
-        type: String
-      },
-      street: {
-        type: String
-      },
-      district: {
-        type: String
-      },
-      province: {
-        type: String
-      },
-      zipCode: {
-        type: String
-      }
+  address: {
+    number: {
+      type: String
+    },
+    street: {
+      type: String
+    },
+    district: {
+      type: String
+    },
+    province: {
+      type: String
+    },
+    zipCode: {
+      type: String
     }
-  ],
+  },
   email: {
     type: String
   },

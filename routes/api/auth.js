@@ -11,6 +11,12 @@ const User = require("../../models/User");
 // Private
 // api/auth
 // Get user by token
+// jsonwebtoken is stateless - we need to keep requesting the backend for verification
+// this route is needed all the time
+// to check if the user is logged in
+
+// req.user comes with token
+// token is thus needed here to proceed
 
 router.get("/", auth, async (req, res) => {
   try {

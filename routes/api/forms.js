@@ -20,7 +20,7 @@ router.post(
       check("lastName", "Last name is required")
         .not()
         .isEmpty(),
-      check("dateOfBirth", "Date of birth is required")
+      check("age", "Age is required")
         .not()
         .isEmpty(),
       check("phone", "Phone number is required")
@@ -37,7 +37,7 @@ router.post(
     const {
       firstName,
       lastName,
-      dateOfBirth,
+      age,
       email,
       phone,
       allergy,
@@ -52,7 +52,7 @@ router.post(
     // Build form object
     const formFields = {};
 
-    formFields.user = req.user.id;
+    // formFields.user = req.user.id;
 
     if (firstName) {
       formFields.firstName = firstName;
@@ -62,8 +62,8 @@ router.post(
       formFields.lastName = lastName;
     }
 
-    if (dateOfBirth) {
-      formFields.dateOfBirth = dateOfBirth;
+    if (age) {
+      formFields.age = age;
     }
 
     if (email) {
@@ -81,6 +81,8 @@ router.post(
     if (medication) {
       formFields.medication = medication.split(",").map(el => el.trim());
     }
+
+    formFields.user = req.user.id;
 
     // Build address object
 
@@ -133,7 +135,7 @@ router.post(
       check("lastName", "Last name is required")
         .not()
         .isEmpty(),
-      check("dateOfBirth", "Date of birth is required")
+      check("age", "Age is required")
         .not()
         .isEmpty(),
       check("phone", "Phone number is required")
@@ -150,7 +152,7 @@ router.post(
     const {
       firstName,
       lastName,
-      dateOfBirth,
+      age,
       email,
       phone,
       allergy,
@@ -175,8 +177,8 @@ router.post(
       formFields.lastName = lastName;
     }
 
-    if (dateOfBirth) {
-      formFields.dateOfBirth = dateOfBirth;
+    if (age) {
+      formFields.age = age;
     }
 
     if (email) {
