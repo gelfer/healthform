@@ -21,7 +21,7 @@ const ViewPage = ({
   ) : (
     <Fragment>
       {form === null || loading ? (
-        <h1>Nothing to show</h1>
+        <h1>Loading...</h1>
       ) : (
         <Fragment>
           <Link to="/" className="btn btn-light">
@@ -42,35 +42,62 @@ const ViewPage = ({
 
           <div className="template pt">
             <h1>Information</h1>
-            <h4>
-              Name: {form.firstName} {form.lastName}
-            </h4>
-            <h4>Age: {form.age}</h4>
-            <h4>Phone Number: {form.phone}</h4>
-            <h4>Email: {form.email}</h4>
-            <h4>
-              Allergies:{" "}
-              {form.allergy.map((el, index) => (
-                <li key={index} className="text-primary">
-                  {" "}
-                  {el}
-                </li>
-              ))}
-            </h4>
-            <h4>
-              Medications:{" "}
-              {form.medication.map((el, index) => (
-                <li key={index} className="text-primary">
-                  {" "}
-                  {el}
-                </li>
-              ))}
-            </h4>
-            <h4>
-              Address: {form.address.number} {form.address.street}{" "}
-              {form.address.district} {form.address.province}{" "}
-              {form.address.zipCode}
-            </h4>
+            <p>
+              <strong>Name:</strong> {form.firstName} {form.lastName}
+            </p>
+            <p>
+              <strong>Age:</strong> {form.age}
+            </p>
+            <p>
+              <strong>Phone Number:</strong> {form.phone}
+            </p>
+            {form.email && (
+              <p>
+                <strong>Email:</strong> {form.email}
+              </p>
+            )}
+
+            {form.allergy && (
+              <p>
+                <strong>Allergies: </strong>
+                {form.allergy.map((el, index) => (
+                  <li key={index} className="text-primary">
+                    {" "}
+                    {el}
+                  </li>
+                ))}
+              </p>
+            )}
+
+            {form.medication && (
+              <p>
+                <strong>Medications: </strong>
+                {form.medication.map((el, index) => (
+                  <li key={index} className="text-primary">
+                    {" "}
+                    {el}
+                  </li>
+                ))}
+              </p>
+            )}
+
+            <p>
+              <strong>Address: </strong>
+            </p>
+
+            {form.address && (
+              <div id="address">
+                {form.address.number && <p>{form.address.number}</p>}
+
+                {form.address.street && <p>{form.address.street}</p>}
+
+                {form.address.district && <p>{form.address.district}</p>}
+
+                {form.address.province && <p>{form.address.province}</p>}
+
+                {form.address.zipCode && <p>{form.address.zipCode}</p>}
+              </div>
+            )}
           </div>
         </Fragment>
       )}

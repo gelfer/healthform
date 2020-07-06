@@ -12,3 +12,24 @@
 .title {
   color: black;
 }
+
+#address p {
+  padding: 0 1rem;
+}
+
+.template p {
+  font-size: 1.1rem;
+  word-wrap: break-word;
+  padding: 1rem;
+  color: #000;
+}
+
+.template h1 {
+  margin: 0.3rem 0;
+}
+
+.template li {
+  line-height: 1.6;
+  margin-top: 10px;
+  color: #000;
+}
