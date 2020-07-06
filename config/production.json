@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://admin:Greenwood2011@cluster0-kme4e.mongodb.net/test?retryWrites=true&w=majority",
+  "jwt": "greenwood2011"
+}
