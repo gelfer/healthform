@@ -2,7 +2,6 @@ import React, { Fragment, useState, useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import Spinner from "../../components/spinner/Spinner";
 
 import { getForm, editForm } from "../../actions/forms";
 
